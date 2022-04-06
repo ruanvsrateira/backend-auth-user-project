@@ -14,4 +14,17 @@ exports.registrationFormMiddleware = async function(req, res, next) {
     } else {
         next();
     }
+};
+
+exports.loggingFormMiddleware = async function(req, res, next) {
+    const { email, password } = req.body;
+
+    const user = await UserModel.findOne({ email: email, password: password });
+    
+
+    if(!user) {
+        return res.json({ error: "Credenciais incorretas !" });
+    } else {
+        next();
+    }
 }
