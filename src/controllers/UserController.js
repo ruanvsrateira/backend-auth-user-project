@@ -21,7 +21,7 @@ exports.index = async function(req, res) {
 exports.logging = async function(req, res) {
     const { email, password } = req.body;
 
-    const user_logged = await logInService(email, password, req);
+    const user_logged = await logInService(email, password);
 
-    res.json({ user_logged, user: req.session.user });
+    res.json({ user_logged })
 };
